@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVC</title>
+    <!-- mai css -->
+    <link rel="stylesheet" href="/css/zero.css" />
+    <!-- normalize css -->
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/css/all.css" />
+    <!-- font -->
+    <link rel="preconnect" href="/https://fonts.googleapis.com" />
+    <link rel="preconnect" href="/https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+  </head>
+  <body class="light-theme">
+    <!-- header -->
+    <div class="header" id="header">
+      <div class="container">
+        <a href="/product/index" class="logo">eStore</a>
+        <ul class=" main-nav ">
+                        @if (User.Identity.IsAuthenticated != true)
+                        {
+                            <li>
+                                <a  asp-controller="Account" asp-action="Login">login</a>
+                            </li>
+                            <li>
+                            <a  asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                        }
+                        @if(User.Identity.IsAuthenticated == true)
+                       { @if(User.IsInRole("customer"))
+                        {<li>
+                            <a asp-controller="Cart" asp-action="Index">
+                                <img style="width:50px" src="/Images/42873-7-cart-free-png-hq.png" />
+                                </a>
+                        </li>}
+                        <li >
+                            <a  asp-controller="Category" asp-action="">
+                                Categories</a>
+                        </li>
+                        @if(User.IsInRole("admin"))
+                            {
+                                <li >
+                                    <a asp-controller="account" asp-action="CreateAdmin">
+                                        <div>
+                                            <img style="width:20px" src="/Images/plus.png" /> 
+                                            <span>&ensp;New Admin</span>
+                                        </div>
+                                     </a>
+                                </li>
+                            }
+                        <li >
+                            <a asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                        }
+        </ul>
+  @*      <ul class="main-nav">*@
+@*          <li><a href="/#articles">Article</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#">Other links</a>*@
+          <!-- mega menu -->
+         @* <div class="mega-menu">
+            <div class="image">
+              <img  src="/images/tree-svg-image-cut-file.png" alt="">
+                     
+          <!-- mega menu -->
+@*        </li>
+        </ul> *@
+      </div>
+    </div>
+    <!-- End header -->
+@*    <a id="upa" href="#">
+    <i id="up" class="fas fa-arrow-alt-circle-up"></i>
+    </a>*@
+    <i id="btn-toggle" class="fas fa-toggle-on"></i>
+@*    <!-- start landing -->
+
+@*      <div class="">
+    <div  class="" style="width:fit-content">*@
+ @RenderBody()
+@*    </div>
+          </div>*@
+
+
+     <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/zero.js"></script>
+        <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - test - <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+        <!-- start Articles -->
+    <div class="articles" id="articles">
+      <h2 class="main-title">Articles</h2>
+      <div class="container">
+        <div class="box">
+          <img src="images/articles/1.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/2.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/3.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/4.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/5.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/6.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/7.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/articles/8.jpg" alt="">
+          <div class="content">
+            <h3>Test title</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci.</p>
+          </div>
+          <div class="info">
+            <a href="#">Read more</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Articles -->
+
+    <!-- start Gallery -->
+<div class="gallery" id="gallery">
+  <h2 class="main-title">Gallery</h2>
+  <div class="container">
+    <div class="box">
+      <div class="image">
+        <img src="images/gallery/1.jpg" alt=""></div>
+    </div>
+    <div class="box">
+      <div class="image">
+        <img src="images/gallery/2.jpg" alt=""></div>
+    </div>
+    <div class="box">
+      <div class="image">
+        <img src="images/gallery/3.jpg" alt=""></div>
+    </div>
+    <div class="box">
+      <div class="image">
+        <img src="images/gallery/4.jpg" alt=""></div>
+    </div>
+    <div class="box">
+      <div class="image">
+        <img src="images/gallery/5.jpg" alt=""></div>
+    </div>
+    <div class="box">
+      <div class="image">
+        <img src="images/gallery/6.jpg" alt=""></div>
+    </div>
+  </div>
+</div>
+    <!-- End Gallery -->
+
+ <!-- start features -->
+ <div class="features" id="features">
+   <h2 class="main-title">Features</h2>
+   <div class="container">
+     <div class="box quality">
+       <div class="img-holder">
+         <img src="images/features/3.jpg" alt="">
+        </div>
+        <h2>Quality</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, rem!</p>
+        <a href="#">More</a>
+     </div>
+     <div class="box time">
+      <div class="img-holder">
+        <img src="images/features/2.jpg" alt="">
+       </div>
+       <h2>Time</h2>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, rem!</p>
+       <a href="#">More</a>
+    </div>
+    <div class="box passion">
+      <div class="img-holder">
+        <img src="images/features/3.jpg" alt="">
+       </div>
+       <h2>Passion</h2>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, rem!</p>
+       <a href="#">More</a>
+    </div>
+   </div>
+ </div>
+ <!-- end features -->
+*@

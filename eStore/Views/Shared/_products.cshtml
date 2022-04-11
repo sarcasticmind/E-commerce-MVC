@@ -1,0 +1,24 @@
+﻿@model List<Product>
+
+<br />
+<div class="" style="color:var(--main-color-opp)">
+
+    <span style=" font-size:20px; text-decoration:dashed">Products in this Category:-</span>
+    <br />
+
+    <div  style="display:flex;">
+
+        @foreach(var item in Model)
+        {
+          <div  class="card" style="width: 18rem; margin:20px; text-align:center">
+          <img class="card-img-top" src="/Images/@item.Image1" alt="Card image cap">
+            <div class="card-body">
+           <p class="card-text"><strong style="color:black; font-size:larger">@item.Name</strong> <br>
+               <strong style="color:black">Price</strong>  :<span style="color:var(--main-color-alt)">@item.Price $</span> </p>
+               <a href="/Product/details/@item.id">Details</a>
+            </div>
+          </div> 
+        }
+    </div>
+</div>
+ 

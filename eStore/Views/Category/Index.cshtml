@@ -1,0 +1,76 @@
+﻿
+@if (User.IsInRole("admin"))
+{     
+
+    @model IEnumerable<eStore.Models.Category>
+
+    {
+        ViewData["Title"] = "Index";
+    }
+
+    <div class="container" style="margin-top:100px; color:var(--main-color-opp)">
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead style="color:var(--main-color-opp)">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody style="color:var(--main-color-opp)">
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a onclick="return confirm('are you sure?')" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+
+}
+@*@model List<Category>*@
+
+
+    <div class="container" style="max-width:600px; margin-top:50px">
+    @*<a style="display:block;margin-bottom:20px;margin-top:40px" href="/category/create">Add Category</a>*@
+
+    <span style="color:rgb(78 115 223); font-size:20px">Categories:-</span>
+
+    <br />
+
+    <select id="depts" class="form-control" onchange="GetStudents()">
+        <option>--Categories--</option>
+        @foreach(var item in Model)
+    {
+         <option value="@item.id">@item.Name</option>
+    }
+    </select>
+
+    <div id="stud"></div>
+<script>
+
+
+    function GetStudents(){
+let deptid = $("#depts").val();
+            $.ajax(
+                {
+                url: `/Product/productInCateg?cat_id=${deptid}`,
+                success: function(result){   
+                $("#stud").html(result);
+                     }
+                 }
+                 );
+                }
+</script>
+        </div>

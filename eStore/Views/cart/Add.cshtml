@@ -1,0 +1,13 @@
+﻿@*@model ProductOrder
+@{
+    Product pro = ViewBag.pro;
+}
+<h1>@pro.Name</h1>
+<form class="card" method="post" asp-route-Proid=@pro.id>
+    
+    <div class="card-body m-3" >
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" class="form-control">
+        <input type="submit" value="Add" class="mt-2 btn btn-danger"/>
+    </div>
+</form>*@

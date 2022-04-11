@@ -1,0 +1,50 @@
+﻿
+@model List<Product>
+
+     <!-- start landing -->
+    <div class="landing">
+      <div class="container">
+        <div class="text">
+            <p>Up to</p>
+          <img style="width:200px" src="/Images/o.jpg" />
+          <p> <span style="color:var(--main-color-alt)">33% </span>OFF.</p>
+        </div>
+        <div class="image">
+          <img src="/Images/fjfjfj.jpg" />
+        </div>
+      </div>
+      <a href="#articles" class="go-down">
+        <i class="fa-solid fa-angles-down"></i>
+      </a>
+    </div>
+    <!-- End landing -->
+
+<div  class="articles">
+    @if (User.IsInRole("admin"))
+    {
+        <a style="margin-bottom:20px" class=container href="/product/create">Add product</a>
+    }
+    <div id="articles" class="container">
+@foreach(var item in Model)
+{
+    <div class="card box" style="color : var(--main-color-opp)">
+  <img class="" style="width:200px" src="/images/@item.Image1" alt="Card image cap">
+  <div style="text-align:center" class="card-body">
+    <h3 class="card-title" style="color:var(--main-color);">@item.Name</h3>
+    <p class="card-text" ><span>Category</span> : @item.Cat.Name </p>
+    <p class="card-text" ><span>Price</span> : @item.Price $</p>
+ <div style="display:flex; justify-content: space-around;" >
+    <a href="/product/details/@item.id" style="margin-right:5px">Details</a>
+@if (User.IsInRole("admin"))
+{                    
+    <a id="edit" href="/product/Edit/@item.id" style="margin-right:5px">Edit</a>
+    <a onclick="return confirm('Are you sure?')"  id="remove" href="/product/delete/@item.id">Remove</a>
+}
+
+</div>
+  </div>
+</div>
+}
+
+</div>
+</div>

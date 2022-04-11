@@ -1,0 +1,35 @@
+﻿@model Product
+@{
+    Layout = "_Layout";
+}
+@{
+    SelectList cags = new SelectList(ViewBag.cags,"id","Name");
+}
+<form method="post" asp-action="Edit" enctype="multipart/form-data" asp-route-id="@Model.id" style="width:fit-content">
+                  <div>
+         <label asp-for="Name">Product Name</label>
+         <input asp-for="Name" class="form-control"/>
+         <span class="text-danger" asp-validation-for="Name"></span>
+         </div>
+         <div>
+         <label asp-for="Image1">Product Image</label>
+         <br />
+         <input asp-for="Image1" type="file" />
+         </div>
+          <div>
+         <label asp-for="Price">Price</label>
+         <input asp-for="Price" class="form-control"/>
+         <span class="text-danger" asp-validation-for="Price"></span>
+         </div>
+         <div>
+             <label asp-for="Cat_id">Category</label>
+             <select class="form-control"asp-for="Cat_id" asp-items="cags">
+                 <option value="0">---select Category---</option>
+        </select>
+         </div>
+         <br />
+         <input type="submit" value="Save" class="btn btn-success" />
+         <a href="/Product/Index" class="btn btn-success">Cancel</a>
+
+     
+</form>

@@ -1,0 +1,11 @@
+﻿<form method ="post">
+    <label>Role</label>
+    <input type="text" name="RoleName" value=@ViewData["RoleName"] />
+    <input type="submit" value="Add" />
+</form>
+<div>
+    @if (TempData.ContainsKey("errors"))
+    {
+        <div class="text-danger">@TempData["errors"]</div>
+    }
+</div>

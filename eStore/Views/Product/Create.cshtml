@@ -1,0 +1,56 @@
+﻿@using eStore.ViewModels
+@model ProductInfo
+
+@{
+    Layout = "_Layout";
+}
+
+<form method="post"  enctype="multipart/form-data" asp-controller="Product" style="width:fit-content">
+         <div>
+         <label asp-for="name">Product Name</label>
+         <input asp-for="name" class="form-control"/>
+         <span class="text-danger" asp-validation-for="name"></span>
+         </div>
+         <div>
+         <label asp-for="img1">Product Image 1</label>
+         <br />
+         <input asp-for="img1" type="file" />
+         </div>
+         <div>
+         <label asp-for="img2">Product Image 2</label>
+         <br />
+         <input asp-for="img2" type="file" />
+         </div>         <div>
+         <label asp-for="img3">Product Image 3</label>
+         <br />
+         <input asp-for="img3" type="file" />
+         </div>
+          <div>
+         <label asp-for="price">Price</label>
+         <input asp-for="price" class="form-control"/>
+         <span class="text-danger" asp-validation-for="price"></span>
+         </div>
+         
+         @{
+    SelectList cags = new SelectList(ViewBag.prods,"id","Name");
+}
+         <div>
+             <label asp-for="Categoryid">Category</label>
+             <select class="form-control"asp-for="Categoryid" asp-items="cags">
+                 <option value="0">---select Category---</option>
+        </select>
+         </div>
+
+
+         <br />
+         <input type="submit" value="Add" class="btn btn-success" />
+         @*<a href="/Instructor/index" class="btn btn-success">Cancel</a>*@
+         <a asp-action="index" asp-controller="Product" class="btn btn-success">Cancel</a>     
+</form>
+
+
+@section scripts{
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js" ></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" ></script>
+}
+

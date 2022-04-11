@@ -1,0 +1,94 @@
+﻿@model Product
+
+<style>
+    .off{
+        display:none;
+    }
+</style>
+
+<form method="post" 
+style="margin-top:20px; width:fit-content" class="container">
+<div  style="display:flex; width:fit-content;padding:50px;  box-shadow: 0 0px 5px var(--box-shadow-color);
+border:2px solid var(--main-color-opp);
+justify-content:space-evenly; color:var(--main-color-opp)">
+    <div  style="text-align:center; margin-right:90px">
+        <a style="cursor:pointer" onclick="previous()">
+         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="var(--main-color-opp)" class="bi bi-skip-backward-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.79-2.907L8.5 7.028V5.5a.5.5 0 0 0-.79-.407L5 7.028V5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0V8.972l2.71 1.935a.5.5 0 0 0 .79-.407V8.972l2.71 1.935A.5.5 0 0 0 12 10.5v-5a.5.5 0 0 0-.79-.407z"/>
+</svg>
+        </a>
+        <img class="on" style="width:250px" src="/images/@Model.Image1" /> 
+        <img class="off" style="width:250px" src="/images/@Model.Image2" /> 
+        <img class="off" style="width:250px" src="/images/@Model.Image3" /> 
+
+       <a style="cursor:pointer"onclick="next()">
+           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="var(--main-color-opp)" class="bi bi-skip-forward-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.79 5.093A.5.5 0 0 0 4 5.5v5a.5.5 0 0 0 .79.407L7.5 8.972V10.5a.5.5 0 0 0 .79.407L11 8.972V10.5a.5.5 0 0 0 1 0v-5a.5.5 0 0 0-1 0v1.528L8.29 5.093a.5.5 0 0 0-.79.407v1.528L4.79 5.093z"/>
+</svg>
+       </a>
+
+        <br />
+        <h2 style="color:var(--main-color)">@Model.Name</h2>
+    </div>
+    <div style="text-align:center">
+         @if (User.IsInRole("admin"))
+            {
+                <br />
+                <br />
+                <br />
+            }
+        <h3>Category :<span style="color:var(--main-color-alt)">@Model.Cat.Name</span></h3>
+        <h3> Price per item : <span style="color:var(--main-color-alt)">@Model.Price</span>$</h3>
+        
+        @if (User.IsInRole("customer")) 
+        {
+            <label>Quantity : </label>
+            <input style="width:50px" min="1" max="100" id="quantity" type="number" value="1" name="quantity" />
+            <br /><br />
+            <a style="cursor:pointer; color:var(--main-color-alt)"
+                onclick="this.href='/cart/saveOrder?ProductId='+@Model.id+'&quantity='+document.getElementById('quantity').value">
+                Add to cart &nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--main-color-alt)" class="bi bi-cart" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+            </a>}
+    </div>
+</div>
+<div style="margin-top:20px;margin-left:20px">
+    @if (User.IsInRole("admin"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.id">Edit</a>
+           <span>&nbsp; &nbsp; &nbsp; &nbsp;</span> 
+        }
+        <a asp-action="Index">Back to List</a>
+</div>
+</form>
+
+
+<script>
+let imgs = document.querySelectorAll("form img")
+let i=0;
+
+function next()
+{
+    if(imgs[i].className="on" && i<2){
+        imgs.forEach((li) => {
+            li.className = "off";
+        });
+        imgs[i+1].className="on";
+        i++;
+    }
+}
+
+function previous()
+{
+    if(imgs[i].className="on" && i>0){
+        imgs.forEach((li) => {
+            li.className = "off";
+        });
+        imgs[i-1].className="on";
+        i--;
+    }
+}
+</script>
+
